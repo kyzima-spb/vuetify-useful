@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/kyzima-spb/vuetify-useful/issues"
   },
-  "homepage": "https://github.com/kyzima-spb/vuetify-useful#readme"
+  "homepage": "https://github.com/kyzima-spb/vuetify-useful#readme",
+  "dependencies": {
+    "v-snackbars": "^3.2.4"
+  }
 }
