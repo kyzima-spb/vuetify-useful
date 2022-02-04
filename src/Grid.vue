@@ -80,7 +80,7 @@
 </template>
 
 <script>
-  import { SnackbarsMixin } from 'vuetify-useful/vuex-snackbars';
+  import { SnackbarsMixin } from './vuex-snackbars';
 
 
   export default {
