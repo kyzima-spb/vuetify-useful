@@ -15,7 +15,10 @@
     "vue",
     "vuejs"
   ],
-  "author": "Kirill Vercetti",
+  "author": {
+    "name": "Kirill Vercetti",
+    "email": "office@kyzima-spb.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kyzima-spb/vuetify-useful/issues"
