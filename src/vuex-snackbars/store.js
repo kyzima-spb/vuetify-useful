@@ -1,13 +1,10 @@
-import { mapActions } from 'vuex';
-
-
 const types = {
   'error': {
     color: 'error',
     icon: '',
   },
   'info': {
-    color: '',
+    color: 'info',
     icon: '',
   },
   'success': {
@@ -37,23 +34,21 @@ const makeObject = item => {
 };
 
 
-const vuexModule = {
-  namespaced: true,
-
-  state: () => ({
+export default () => {
+  const state = () => ({
     objects: [],
-  }),
+  });
 
-  mutations: {
+  const mutations = {
     clean(state, items) {
       state.objects = items;
     },
     push(state, item) {
       state.objects.push(item);
     },
-  },
+  };
 
-  actions: {
+  const actions = {
     // Удаляет сообщения, закрытые пользователем или по таймеру.
     clean({ commit }, items) {
       commit('clean', items);
@@ -103,32 +98,14 @@ const vuexModule = {
     flashWarningMessage({ dispatch }, message) {
       dispatch('flashWarning', {message});
     },
-  },
-};
+  };
 
-
-export const SnackbarsMixin = {
-  methods: {
-    ...mapActions('snackbars', [
-      'flashError',
-      'flashInfo',
-      'flashSuccess',
-      'flashWarning',
-      'flashErrorMessage',
-      'flashInfoMessage',
-      'flashSuccessMessage',
-      'flashWarningMessage',
-    ]),
-  },
-};
-
-
-export default {
-  install(Vue, { store }) {
-    if (!store) {
-      throw new Error('You need provide Vuex store.');
-    }
-
-    store.registerModule('snackbars', vuexModule);
-  },
+  return store => {
+    store.registerModule('snackbars', {
+      namespaced: true,
+      state,
+      mutations,
+      actions,
+    });
+  };
 };

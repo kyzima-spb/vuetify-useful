@@ -6,3 +6,8 @@ export { TimeField };
 
 import Grid from './Grid';
 export { Grid };
+
+import SnackbarsPlugin from './vuex-snackbars';
+export { SnackbarsPlugin };
+import { makeSnackbarsStore } from './vuex-snackbars';
+export { makeSnackbarsStore };
