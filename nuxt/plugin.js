@@ -1,5 +1,5 @@
-// import { makeSnackbarsStore } from '@kyzima-spb/vuetify-useful/vuex-snackbars';
-import { SnackbarsPlugin, makeSnackbarsStore } from '@kyzima-spb/vuetify-useful';
+import { makeSnackbarsStore } from '@kyzima-spb/vuetify-useful/vuex-snackbars';
+import { SnackbarsPlugin } from '@kyzima-spb/vuetify-useful';
 import Vue from 'vue';
 
 

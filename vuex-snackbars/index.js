@@ -23,6 +23,11 @@ const SnackbarsMixin = {
 function install(Vue, config = {}) {
   Vue.component('VuexSnackbars', Snackbars);
   Vue.mixin(SnackbarsMixin);
+
+  if (config.store) {
+    const storePlugin = makeSnackbarsStore();
+    storePlugin(config.store);
+  }
 }
 
 
