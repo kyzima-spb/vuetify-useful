@@ -4,7 +4,7 @@ export { DateField };
 import TimeField from './forms/fields/TimeField';
 export { TimeField };
 
-import Grid from './Grid';
+import Grid from './grid/Grid';
 export { Grid };
 
 import SnackbarsPlugin from './vuex-snackbars';

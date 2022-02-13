@@ -80,7 +80,7 @@
 </template>
 
 <script>
-  import { SnackbarsMixin } from './vuex-snackbars';
+  import { SnackbarsMixin } from '../vuex-snackbars';
 
 
   export default {
