@@ -1,3 +1,6 @@
+import FormValidationObserver from './forms/FormValidationObserver';
+export { FormValidationObserver };
+
 import DateField from './forms/fields/DateField';
 export { DateField };
 
