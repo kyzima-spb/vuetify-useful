@@ -4,6 +4,9 @@ export { FormValidationObserver };
 import DateField from './forms/fields/DateField';
 export { DateField };
 
+import ListField from './forms/fields/ListField';
+export { ListField };
+
 import TimeField from './forms/fields/TimeField';
 export { TimeField };
 
