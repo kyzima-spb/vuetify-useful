@@ -12,6 +12,7 @@
       }"
       show-select
       v-model="selectedItems"
+      v-bind="$attrs"
     >
       <template #top>
         <v-toolbar flat>
@@ -63,17 +64,15 @@
       </template>
 
       <template v-slot:item.actions="{ item }">
-        <span class="nowrap">
-          <v-icon small class="mr-2" @click="viewAction(item)">
-            mdi-eye
-          </v-icon>
-          <v-icon small class="mr-2" @click="updateAction(item)">
-            mdi-pencil
-          </v-icon>
-          <v-icon small @click="deleteAction(item)" v-if="deleteItem">
-            mdi-delete
-          </v-icon>
-        </span>
+        <v-icon small class="mr-2" @click="viewAction(item)">
+          mdi-eye
+        </v-icon>
+        <v-icon small class="mr-2" @click="updateAction(item)">
+          mdi-pencil
+        </v-icon>
+        <v-icon small @click="deleteAction(item)" v-if="deleteItem">
+          mdi-delete
+        </v-icon>
       </template>
     </v-data-table>
   </div>
@@ -134,7 +133,7 @@
             value: 'actions',
             align: 'center',
             sortable: false,
-            width: '1px',
+            cellClass: 'nowrap',
           },
         ];
       },
@@ -160,6 +159,8 @@
       },
 
       updateData() {
+        console.log(this.options)
+
         // Обновляет данные таблицы согласно текущему состоянию
         this.loading = true;
         this.errorMessage = null;
@@ -194,7 +195,7 @@
     watch: {
       options: {
         handler() {
-          this.updateData()
+          this.updateData();
         },
         deep: true,
       }
@@ -205,5 +206,6 @@
 <style scoped>
   .nowrap {
     white-space: nowrap;
+    width: 1px;
   }
 </style>
