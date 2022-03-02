@@ -15,6 +15,7 @@
       v-bind="$attrs"
     >
       <template #top>
+        <slot name="top.prepend"></slot>
         <v-toolbar flat>
           <v-toolbar-title>{{ title }}</v-toolbar-title>
           <v-spacer></v-spacer>
@@ -41,6 +42,7 @@
           </v-btn>
           <slot name="toolbar"></slot>
         </v-toolbar>
+        <slot name="top.append"></slot>
       </template>
 
       <template #no-data>
@@ -51,19 +53,19 @@
         <slot :name="name" v-bind="slotProps" />
       </template>
 
-      <template #item.created="{ item }">
+      <template #item.created="{ value }">
         <span class="nowrap">
-          {{ new Date(item.created).toLocaleString() }}
+          {{ new Date(value).toLocaleString() }}
         </span>
       </template>
 
-      <template #item.updated="{ item }">
+      <template #item.updated="{ value }">
         <span class="nowrap">
-          {{ new Date(item.updated).toLocaleString() }}
+          {{ new Date(value).toLocaleString() }}
         </span>
       </template>
 
-      <template v-slot:item.actions="{ item }">
+      <template #item.actions="{ item }">
         <v-icon small class="mr-2" @click="viewAction(item)">
           mdi-eye
         </v-icon>
@@ -107,6 +109,12 @@
         type: Function,
         default: null,
       },
+
+      // Additional query string options.
+      queryParams: {
+        type: Object,
+        default: () => ({}),
+      },
     },
 
     data: () => ({
@@ -117,7 +125,7 @@
       // общее кол-во элементов в коллекции
       totalItems: 0,
       // отображает полосу загрузки при обновлении данных
-      loading: true,
+      loading: false,
       // сообщение, которое отображается в случае ошибки при загрузке данных
       errorMessage: null,
       options: {},
@@ -160,6 +168,12 @@
 
       updateData() {
         // Обновляет данные таблицы согласно текущему состоянию
+
+        // Items have already been requested
+        if (this.loading) {
+          return
+        }
+
         this.loading = true;
         this.errorMessage = null;
 
@@ -173,6 +187,7 @@
               limit: this.options.itemsPerPage,
               offset: (this.options.page - 1) * this.options.itemsPerPage,
               sort: sort.join(','),
+              ...this.queryParams,
             },
           })
           .then(resp => {
@@ -196,7 +211,13 @@
           this.updateData();
         },
         deep: true,
-      }
+      },
+      queryParams: {
+        handler() {
+          this.updateData();
+        },
+        deep: true,
+      },
     },
   };
 </script>
