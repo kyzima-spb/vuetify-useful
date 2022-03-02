@@ -159,8 +159,6 @@
       },
 
       updateData() {
-        console.log(this.options)
-
         // Обновляет данные таблицы согласно текущему состоянию
         this.loading = true;
         this.errorMessage = null;
